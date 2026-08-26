@@ -1,0 +1,52 @@
+<form name="inscription-foucal-40ans" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="inscription-foucal-40ans" />
+    
+    <div class="form-group">
+        <label for="name">Ton Prénom & Nom *</label>
+        <input type="text" id="name" name="name" placeholder="Ex: Jean Dupont" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Ton Email ou Téléphone *</label>
+        <input type="text" id="email" name="contact" placeholder="Ex: jean@example.com ou 06 12 34 56 78" required>
+    </div>
+
+    <div class="form-group">
+        <label>Événement(s) qui t'intéresse(nt) :</label>
+        <div class="checkbox-group">
+            <label class="checkbox-item">
+                <input type="checkbox" name="events" value="Marathon de Paris">
+                Marathon de Paris (11 avril)
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" name="events" value="Camping Bretagne">
+                Camping en Bretagne (6-9 mai)
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" name="events" value="Marathon Bière Liège">
+                Marathon Bière Liège (16 mai)
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" name="events" value="Marathon Alsace">
+                Marathon d'Alsace (Fin juin)
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lodging">Besoin d'un hébergement / Place chez l'habitant ?</label>
+        <select id="lodging" name="lodging">
+            <option value="non_spécifié">Sélectionne une option</option>
+            <option value="oui">Oui, je suis chaud pour l'hébergement proposé</option>
+            <option value="autonomie">Non, je gère mon propre hébergement</option>
+            <option value="a_voir">À voir selon les disponibilités</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="message">Un mot doux / Une question ?</label>
+        <textarea id="message" name="message" rows="4" placeholder="Dis-moi si tu cours, si tu viens juste pour l'apéro..."></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit">Confirmer ma présence / Mon intérêt</button>
+</form>
