@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'insupportable programme des 40 ans de Foucal</title>
+    <style>
+        :root {
+            --primary: #2b5876;
+            --primary-dark: #1e3c72;
+            --accent: #e67e22;
+            --accent-hover: #d35400;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #6c757d;
+            --border: #e9ecef;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .table-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary-dark);
+            font-weight: 600;
+            padding: 16px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background-color: #e2e8f0;
+            color: #334155;
+        }
+
+        .badge-date {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-location {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        a.link-btn {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a.link-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Form section */
+        .form-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        .form-section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        .form-section p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 88, 118, 0.15);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        button.btn-submit {
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button.btn-submit:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button.btn-submit:active {
+            transform: scale(0.99);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .form-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>L'insupportable programme des 40 ans de Foucal</h1>
+            <p>Un planning des visites amicales et événements prévus pour 2027 !</p>
+        </header>
+
+        <!-- Tableau des événements -->
+        <div class="table-card">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Événement</th>
+                            <th>Période / Date (2027)</th>
+                            <th>Localisation</th>
+                            <th>À partir de quand réserver</th>
+                            <th>Hébergement</th>
+                            <th>Liens / Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Marathon de Paris</strong></td>
+                            <td><span class="badge badge-date">11 avril</span></td>
+                            <td><span class="badge badge-location">Paris</span></td>
+                            <td>Septembre 2026 (dossard) ; Janvier 2027 (hébergement)</td>
+                            <td>Quelques places possibles à Paris chez les Frères FOUCAL</td>
+                            <td>Site pas encore ouvert</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Marathon des amateurs de bière</strong></td>
+                            <td><span class="badge badge-date">Dimanche 16 mai</span><br><small>(Lundi 17 Pentecôte férié)</small></td>
+                            <td><span class="badge badge-location">Liège, Belgique</span></td>
+                            <td>Septembre 2026 à Janvier 2027 <br><em>(Moins cher !)</em></td>
+                            <td>Auberge à booker en groupe.</td>
+                            <td><a href="https://www.beerloversmarathon.be/" target="_blank" class="link-btn">Site Web</a> (110/120 € l’inscription)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Marathon du Vignoble d'Alsace</strong></td>
+                            <td><span class="badge badge-date">Fin juin</span></td>
+                            <td><span class="badge badge-location">Molsheim (Alsace)</span></td>
+                            <td>Décembre 2026 (inscription) ; Mars 2027 (hébergement)</td>
+                            <td>5-6 places à Strasbourg</td>
+                            <td><a href="https://marathon-alsace.com/" target="_blank" class="link-btn">marathon-alsace.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Camping en Bretagne</strong></td>
+                            <td><span class="badge badge-date">6 au 9 mai</span><br><small>(Week-end de l'Ascension)</small></td>
+                            <td><span class="badge badge-location">Bretagne</span></td>
+                            <td>Novembre 2026</td>
+                            <td>Camping</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Formulaire d'inscription -->
+        <div class="form-section">
+            <h2>Rejoindre l'aventure / S'inscrire</h2>
+            <p>Indique-moi à quel(s) événement(s) tu souhaites participer pour qu'on puisse s'organiser !</p>
+
+            <form action="#" method="POST" onsubmit="alert('Merci pour ton inscription ! Je reviens vers toi rapidement.'); return false;">
+                <div class="form-group">
+                    <label for="name">Ton Prénom & Nom *</label>
+                    <input type="text" id="name" name="name" placeholder="Ex: Jean Dupont" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Ton Email ou Téléphone *</label>
+                    <input type="text" id="email" name="email" placeholder="Ex: jean@example.com ou 06 12 34 56 78" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Événement(s) qui t'intéresse(nt) :</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events[]" value="Marathon de Paris">
+                            Marathon de Paris (11 avril)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events[]" value="Camping Bretagne">
+                            Camping en Bretagne (6-9 mai)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events[]" value="Marathon Bière Liège">
+                            Marathon Bière Liège (16 mai)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events[]" value="Marathon Alsace">
+                            Marathon d'Alsace (Fin juin)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lodging">Besoin d'un hébergement / Place chez l'habitant ?</label>
+                    <select id="lodging" name="lodging">
+                        <option value="non_spécifié">Sélectionne une option</option>
+                        <option value="oui">Oui, je suis chaud pour l'hébergement proposé</option>
+                        <option value="autonomie">Non, je gère mon propre hébergement</option>
+                        <option value="a_voir">À voir selon les disponibilités</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Un mot doux / Une question ?</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Dis-moi si tu cours, si tu viens juste pour l'apéro..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Confirmer ma présence / Mon intérêt</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>© 2027 - Programme des 40 ans de Foucal</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
