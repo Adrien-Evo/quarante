@@ -131,9 +131,10 @@
             border-radius: 4px;
         }
 
-        /* Tableau */
+        /* Table & Foldable Rows */
         .table-responsive {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -153,14 +154,18 @@
             border-bottom: 1px solid var(--card-border);
         }
 
-        tbody tr {
+        tr.event-row {
+            cursor: pointer;
             background: rgba(255, 255, 255, 0.02);
             transition: all 0.2s ease;
         }
 
-        tbody tr:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
+        tr.event-row:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        tr.event-row.active {
+            background: rgba(168, 85, 247, 0.08);
         }
 
         td {
@@ -181,6 +186,82 @@
             border-right: 1px solid var(--card-border);
             border-top-right-radius: var(--radius-md);
             border-bottom-right-radius: var(--radius-md);
+        }
+
+        .chevron {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            margin-left: 8px;
+            font-size: 0.8rem;
+            color: #ec4899;
+        }
+
+        tr.event-row.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Detail Rows & Image Collage */
+        .details-row {
+            display: none;
+        }
+
+        .details-row.open {
+            display: table-row;
+        }
+
+        .details-cell {
+            padding: 0 !important;
+            border: 1px solid var(--card-border) !important;
+            border-radius: var(--radius-md) !important;
+            background: rgba(15, 23, 42, 0.6);
+            overflow: hidden;
+        }
+
+        .details-content {
+            padding: 24px;
+        }
+
+        .banner-collage {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 160px;
+            gap: 4px;
+            background: #0b1120;
+            overflow: hidden;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .banner-collage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .banner-collage img:hover {
+            transform: scale(1.05);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+        }
+
+        .detail-card h4 {
+            color: #ec4899;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
         }
 
         .badge {
@@ -215,7 +296,7 @@
             text-decoration: underline;
         }
 
-        /* Formulaire */
+        /* Form Controls */
         .form-section {
             max-width: 800px;
             margin: 0 auto;
@@ -291,7 +372,6 @@
             cursor: pointer;
         }
 
-        /* Bouton Glow inspiré du CTA violet/rose */
         button.btn-submit {
             width: 100%;
             background: var(--gradient-accent);
@@ -313,10 +393,6 @@
             transform: translateY(-2px);
         }
 
-        button.btn-submit:active {
-            transform: translateY(0);
-        }
-
         footer {
             text-align: center;
             color: var(--text-muted);
@@ -324,18 +400,72 @@
             padding: 30px 0 10px 0;
         }
 
+        /* Mobile Adaptations */
         @media (max-width: 768px) {
             body {
-                padding: 15px 10px;
+                padding: 12px 8px;
             }
             header {
-                padding: 35px 20px;
+                padding: 30px 16px;
+                border-radius: var(--radius-lg);
             }
             header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            header p {
+                font-size: 1rem;
             }
             .section-card {
-                padding: 20px 15px;
+                padding: 16px 12px;
+                border-radius: var(--radius-lg);
+            }
+            
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            tr.event-row {
+                margin-bottom: 12px;
+                border: 1px solid var(--card-border);
+                border-radius: var(--radius-md);
+                padding: 12px;
+            }
+            
+            td {
+                border: none !important;
+                padding: 6px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: right;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                text-align: left;
+                padding-right: 10px;
+            }
+
+            td:first-child, td:last-child {
+                border-radius: 0;
+            }
+
+            .banner-collage {
+                height: 100px;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -367,37 +497,164 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><strong>Marathon de Paris</strong></td>
-                            <td><span class="badge badge-date">11 avril 2027</span></td>
-                            <td><span class="badge badge-location">Paris</span></td>
-                            <td>Sept. 2026 (dossard)<br>Janv. 2027 (hébergement)</td>
-                            <td>Quelques places chez les Frères FOUCAL</td>
-                            <td>Site bientôt ouvert</td>
+                        <!-- Marathon de Paris -->
+                        <tr class="event-row" onclick="toggleRow(this)">
+                            <td data-label="Événement"><strong>Marathon de Paris</strong> <span class="chevron">▼</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">11 avril 2027</span></td>
+                            <td data-label="Localisation"><span class="badge badge-location">Paris</span></td>
+                            <td data-label="Réservation">Sept. 2026 (dossard)<br>Janv. 2027 (hébergement)</td>
+                            <td data-label="Hébergement">Quelques places chez les Frères FOUCAL</td>
+                            <td data-label="Info">Site bientôt ouvert</td>
                         </tr>
-                        <tr>
-                            <td><strong>Marathon des amateurs de bière</strong></td>
-                            <td><span class="badge badge-date">Dimanche 16 mai</span><br><small style="color:var(--text-muted)">(Lundi 17 Pentecôte)</small></td>
-                            <td><span class="badge badge-location">Liège, Belgique</span></td>
-                            <td>Sept. 2026 à Janv. 2027<br><em style="color:#a855f7;">(Moins cher !)</em></td>
-                            <td>Auberge à booker en groupe</td>
-                            <td><a href="https://www.beerloversmarathon.be/" target="_blank" class="link-btn">Site Web</a> <small>(110-120€)</small></td>
+                        <tr class="details-row">
+                            <td colspan="6" class="details-cell">
+                                <div class="banner-collage">
+                                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=400&q=80" alt="Paris 1">
+                                    <img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=400&q=80" alt="Marathon">
+                                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=400&q=80" alt="Paris 2">
+                                </div>
+                                <div class="details-content">
+                                    <h3>Détails : Marathon de Paris</h3>
+                                    <div class="details-grid">
+                                        <div class="detail-card">
+                                            <h4>Parcours</h4>
+                                            <p>Départ sur les Champs-Élysées, passage par les quais de Seine, le Bois de Vincennes et le Bois de Boulogne.</p>
+                                        </div>
+                                        <div class="detail-card">
+                                            <h4>Logistique</h4>
+                                            <p>Rendez-vous groupe prévu la veille pour retrait des dossards + Pasta Party maison !</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
-                        <tr>
-                            <td><strong>Marathon du Vignoble d'Alsace</strong></td>
-                            <td><span class="badge badge-date">Fin juin 2027</span></td>
-                            <td><span class="badge badge-location">Molsheim (Alsace)</span></td>
-                            <td>Déc. 2026 (inscription)<br>Mars 2027 (hébergement)</td>
-                            <td>5-6 places à Strasbourg</td>
-                            <td><a href="https://marathon-alsace.com/" target="_blank" class="link-btn">Site Web</a></td>
+
+                        <!-- Marathon des amateurs de bière -->
+                        <tr class="event-row" onclick="toggleRow(this)">
+                            <td data-label="Événement"><strong>Marathon des amateurs de bière</strong> <span class="chevron">▼</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">Dimanche 16 mai</span><br><small style="color:var(--text-muted)">(Lundi 17 Pentecôte)</small></td>
+                            <td data-label="Localisation"><span class="badge badge-location">Liège, Belgique</span></td>
+                            <td data-label="Réservation">Sept. 2026 à Janv. 2027<br><em style="color:#a855f7;">(Moins cher !)</em></td>
+                            <td data-label="Hébergement">Auberge à booker en groupe</td>
+                            <td data-label="Info"><a href="https://www.beerloversmarathon.be/" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a> <small>(110-120€)</small></td>
                         </tr>
-                        <tr>
-                            <td><strong>Camping en Bretagne</strong></td>
-                            <td><span class="badge badge-date">6 au 9 mai 2027</span><br><small style="color:var(--text-muted)">(Ascension)</small></td>
-                            <td><span class="badge badge-location">Bretagne</span></td>
-                            <td>Novembre 2026</td>
-                            <td>Camping</td>
-                            <td>-</td>
+                        <tr class="details-row">
+                            <td colspan="6" class="details-cell">
+                                <div class="banner-collage">
+                                    <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=400&q=80" alt="Bière 1">
+                                    <img src="https://images.unsplash.com/photo-1518176258769-f227c798150e?auto=format&fit=crop&w=400&q=80" alt="Liège">
+                                    <img src="https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?auto=format&fit=crop&w=400&q=80" alt="Bière 2">
+                                </div>
+                                <div class="details-content">
+                                    <h3>Détails : Beer Lovers Marathon</h3>
+                                    <div class="details-grid">
+                                        <div class="detail-card">
+                                            <h4>Ambiance</h4>
+                                            <p>42 km déguisés avec de la dégustation de bières belges tous les 5 km. Ambiance ultra festive !</p>
+                                        </div>
+                                        <div class="detail-card">
+                                            <h4>Programme</h4>
+                                            <p>Arrivée le samedi, marathon le dimanche, récupération et gaufres le lundi férié !</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Marathon du Vignoble d'Alsace -->
+                        <tr class="event-row" onclick="toggleRow(this)">
+                            <td data-label="Événement"><strong>Marathon du Vignoble d'Alsace</strong> <span class="chevron">▼</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">Fin juin 2027</span></td>
+                            <td data-label="Localisation"><span class="badge badge-location">Molsheim (Alsace)</span></td>
+                            <td data-label="Réservation">Déc. 2026 (inscription)<br>Mars 2027 (hébergement)</td>
+                            <td data-label="Hébergement">5-6 places à Strasbourg</td>
+                            <td data-label="Info"><a href="https://marathon-alsace.com/" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a></td>
+                        </tr>
+                        <tr class="details-row">
+                            <td colspan="6" class="details-cell">
+                                <div class="banner-collage">
+                                    <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=400&q=80" alt="Vignoble 1">
+                                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80" alt="Vin">
+                                    <img src="https://images.unsplash.com/photo-1568283096533-0dd839c31ed3?auto=format&fit=crop&w=400&q=80" alt="Alsace">
+                                </div>
+                                <div class="details-content">
+                                    <h3>Détails : Marathon d'Alsace</h3>
+                                    <div class="details-grid">
+                                        <div class="detail-card">
+                                            <h4>Parcours</h4>
+                                            <p>Parcours au cœur des vignes alsaciennes avec dégustations de grands crus aux ravitaillements.</p>
+                                        </div>
+                                        <div class="detail-card">
+                                            <h4>Hébergement Strasbourg</h4>
+                                            <p>Pied-à-terre sur Strasbourg avec trajets en train/voiture vers Molsheim prévus.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Week-end Seigneur des Anneaux -->
+                        <tr class="event-row" onclick="toggleRow(this)">
+                            <td data-label="Événement"><strong>Week end Seigneur des anneaux</strong> <span class="chevron">▼</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">Week end avril</span><br><small style="color:var(--text-muted)">(Ascension)</small></td>
+                            <td data-label="Localisation"><span class="badge badge-location">Bretagne</span></td>
+                            <td data-label="Réservation">Avril 2027</td>
+                            <td data-label="Hébergement">Geekery assumée</td>
+                            <td data-label="Info">-</td>
+                        </tr>
+                        <tr class="details-row">
+                            <td colspan="6" class="details-cell">
+                                <div class="banner-collage">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" alt="Forêt">
+                                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" alt="Épée / Fantasy">
+                                    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" alt="Nature">
+                                </div>
+                                <div class="details-content">
+                                    <h3>Détails : Week-end Seigneur des Anneaux</h3>
+                                    <div class="details-grid">
+                                        <div class="detail-card">
+                                            <h4>Concept</h4>
+                                            <p>Marathon des films version extended, jeux de société fantasy, et barbecue en forêt bretonne.</p>
+                                        </div>
+                                        <div class="detail-card">
+                                            <h4>Tenue recommandée</h4>
+                                            <p>Cape d’Elfe ou oreilles de Hobbit vivement conseillées.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- La semaine à Porto -->
+                        <tr class="event-row" onclick="toggleRow(this)">
+                            <td data-label="Événement"><strong>La semaine à Porto</strong> <span class="chevron">▼</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">Début Août 2027</span></td>
+                            <td data-label="Localisation"><span class="badge badge-location">Porto, Portugal</span></td>
+                            <td data-label="Réservation">Janvier pour les vols</td>
+                            <td data-label="Hébergement">6 places dans la casota</td>
+                            <td data-label="Info"><a href="https://marathon-alsace.com/" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a></td>
+                        </tr>
+                        <tr class="details-row">
+                            <td colspan="6" class="details-cell">
+                                <div class="banner-collage">
+                                    <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=400&q=80" alt="Porto 1">
+                                    <img src="https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=400&q=80" alt="Porto 2">
+                                    <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=400&q=80" alt="Océan">
+                                </div>
+                                <div class="details-content">
+                                    <h3>Détails : Semaine à Porto</h3>
+                                    <div class="details-grid">
+                                        <div class="detail-card">
+                                            <h4>Programme</h4>
+                                            <p>Dégustations de Porto, surf sur la côte, francesinhas et chill à la casota.</p>
+                                        </div>
+                                        <div class="detail-card">
+                                            <h4>Vols</h4>
+                                            <p>À réserver dès janvier 2027 pour choper les meilleurs prix Ryanair/Transavia.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -430,16 +687,20 @@
                             Marathon de Paris (11 avril)
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" name="events" value="Camping Bretagne">
-                            Camping en Bretagne (6-9 mai)
-                        </label>
-                        <label class="checkbox-item">
                             <input type="checkbox" name="events" value="Marathon Bière Liège">
                             Marathon Bière Liège (16 mai)
                         </label>
                         <label class="checkbox-item">
                             <input type="checkbox" name="events" value="Marathon Alsace">
                             Marathon d'Alsace (Fin juin)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events" value="Seigneur des anneaux">
+                            Week-end Seigneur des Anneaux (Avril)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events" value="Porto">
+                            Semaine à Porto (Début Août)
                         </label>
                     </div>
                 </div>
@@ -469,5 +730,14 @@
 
     </div>
 
+    <script>
+        function toggleRow(row) {
+            row.classList.toggle('active');
+            const detailsRow = row.nextElementSibling;
+            if (detailsRow && detailsRow.classList.contains('details-row')) {
+                detailsRow.classList.toggle('open');
+            }
+        }
+    </script>
 </body>
 </html>
