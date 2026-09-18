@@ -231,7 +231,8 @@
         }
 
         .banner-collage.single-image {
-            height: 260px;
+            height: auto;
+            aspect-ratio: 16 / 9;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -540,6 +541,14 @@
 
             .banner-collage {
                 height: 100px;
+            }
+
+            .banner-collage.single-image {
+                aspect-ratio: 4 / 3;
+            }
+
+            .banner-collage.single-image img {
+                padding: 6px;
             }
 
             .checkbox-group {
