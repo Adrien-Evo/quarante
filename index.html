@@ -499,8 +499,35 @@
                 border-radius: var(--radius-lg);
             }
             
+            /* On mobile, the table is converted to cards.
+               Detail rows must still behave as full-width containers. */
             table, thead, tbody, th, td, tr {
                 display: block;
+            }
+
+            .details-row {
+                display: none;
+                width: 100%;
+            }
+
+            .details-row.open {
+                display: block;
+            }
+
+            .details-row .details-cell {
+                display: block !important;
+                width: 100% !important;
+                padding: 0 !important;
+                text-align: left !important;
+            }
+
+            .details-row .details-cell::before {
+                display: none;
+                content: none;
+            }
+
+            .details-content {
+                width: 100%;
             }
             
             thead tr {
@@ -539,16 +566,28 @@
                 border-radius: 0;
             }
 
+            /* Porto banner: full width on phones, with no shrinking caused
+               by the mobile flex rules applied to table cells. */
             .banner-collage {
+                width: 100%;
                 height: 100px;
             }
 
             .banner-collage.single-image {
-                aspect-ratio: 4 / 3;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+                display: block;
+                overflow: hidden;
             }
 
             .banner-collage.single-image img {
-                padding: 6px;
+                display: block;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                object-fit: cover;
+                object-position: center;
             }
 
             .checkbox-group {
