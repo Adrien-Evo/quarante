@@ -222,24 +222,36 @@
         }
 
         .banner-collage {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: block;
+            width: 100%;
             height: 160px;
-            gap: 4px;
             background: #0b1120;
             overflow: hidden;
             border-bottom: 1px solid var(--card-border);
         }
 
+        .banner-collage.single-image {
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0b1120;
+        }
+
         .banner-collage img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
         }
 
-        .banner-collage img:hover {
-            transform: scale(1.05);
+        .banner-collage.single-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            background: #0b1120;
+            padding: 8px;
         }
 
         .details-grid {
@@ -372,6 +384,72 @@
             cursor: pointer;
         }
 
+        .calendar-section {
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .month-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 18px 16px;
+            min-height: 170px;
+        }
+
+        .month-card h3 {
+            color: #f8fafc;
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+        }
+
+        .month-events {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .event-pill {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            max-width: 100%;
+            background: rgba(168, 85, 247, 0.12);
+            color: #e9d5ff;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .event-pill.pink {
+            background: rgba(236, 72, 153, 0.12);
+            border-color: rgba(236, 72, 153, 0.25);
+            color: #f9a8d4;
+        }
+
+        .event-pill.orange {
+            background: rgba(251, 146, 60, 0.12);
+            border-color: rgba(251, 146, 60, 0.25);
+            color: #fdba74;
+        }
+
+        .event-pill.blue {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.25);
+            color: #7dd3fc;
+        }
+
         button.btn-submit {
             width: 100%;
             background: var(--gradient-accent);
@@ -500,29 +578,24 @@
                         <!-- Marathon de Paris -->
                         <tr class="event-row" onclick="toggleRow(this)">
                             <td data-label="Événement"><strong>Marathon de Paris</strong> <span class="chevron">▼</span></td>
-                            <td data-label="Période / Date"><span class="badge badge-date">11 avril 2027</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">4 avril 2027</span></td>
                             <td data-label="Localisation"><span class="badge badge-location">Paris</span></td>
-                            <td data-label="Réservation">Sept. 2026 (dossard)<br>Janv. 2027 (hébergement)</td>
-                            <td data-label="Hébergement">Quelques places chez les Frères FOUCAL</td>
-                            <td data-label="Info">Site bientôt ouvert</td>
+                            <td data-label="Réservation">Sept. Oct. 2026 (dossard)<br>Janv. 2027 (hébergement)</td>
+                            <td data-label="Hébergement">Quelques places free of charge possible</td>
+                            <td data-label="Info"><a href="https://www.asicsmarathondeparis.com/fr" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a></td>
                         </tr>
                         <tr class="details-row">
                             <td colspan="6" class="details-cell">
-                                <div class="banner-collage">
-                                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=400&q=80" alt="Paris 1">
-                                    <img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=400&q=80" alt="Marathon">
-                                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=400&q=80" alt="Paris 2">
-                                </div>
                                 <div class="details-content">
                                     <h3>Détails : Marathon de Paris</h3>
                                     <div class="details-grid">
                                         <div class="detail-card">
-                                            <h4>Parcours</h4>
-                                            <p>Départ sur les Champs-Élysées, passage par les quais de Seine, le Bois de Vincennes et le Bois de Boulogne.</p>
+                                            <h4>Orga/Inscriptions</h4>
+                                            <p>C'est au tirage au sort. Je suis inscrit pour une équipe de 4, mais pas encore le résultat si pris ou non. C'est cher (160 euros)</p>
                                         </div>
                                         <div class="detail-card">
-                                            <h4>Logistique</h4>
-                                            <p>Rendez-vous groupe prévu la veille pour retrait des dossards + Pasta Party maison !</p>
+                                            <h4>Ambiance</h4>
+                                            <p>Je vais essayer de le faire entre 3h30 et 3h45, donc bonne allure, plutot sérieux. Pasta party la veille.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -536,25 +609,20 @@
                             <td data-label="Localisation"><span class="badge badge-location">Liège, Belgique</span></td>
                             <td data-label="Réservation">Sept. 2026 à Janv. 2027<br><em style="color:#a855f7;">(Moins cher !)</em></td>
                             <td data-label="Hébergement">Auberge à booker en groupe</td>
-                            <td data-label="Info"><a href="https://www.beerloversmarathon.be/" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a> <small>(110-120€)</small></td>
+                            <td data-label="Info"><a href="https://www.beerloversmarathon.be/" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a></td>
                         </tr>
                         <tr class="details-row">
                             <td colspan="6" class="details-cell">
-                                <div class="banner-collage">
-                                    <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=400&q=80" alt="Bière 1">
-                                    <img src="https://images.unsplash.com/photo-1518176258769-f227c798150e?auto=format&fit=crop&w=400&q=80" alt="Liège">
-                                    <img src="https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?auto=format&fit=crop&w=400&q=80" alt="Bière 2">
-                                </div>
                                 <div class="details-content">
                                     <h3>Détails : Beer Lovers Marathon</h3>
                                     <div class="details-grid">
                                         <div class="detail-card">
-                                            <h4>Ambiance</h4>
-                                            <p>42 km déguisés avec de la dégustation de bières belges tous les 5 km. Ambiance ultra festive !</p>
+                                            <h4>Organisation</h4>
+                                            <p>Course le Dimanche 16 Mai, lundi 17 Mai c'est férié (en france). 100-110 euros l'inscription à l'event. </p>
                                         </div>
                                         <div class="detail-card">
-                                            <h4>Programme</h4>
-                                            <p>Arrivée le samedi, marathon le dimanche, récupération et gaufres le lundi férié !</p>
+                                            <h4>Ambiance</h4>
+                                            <p>42 km déguisés avec de la dégustation de bières belges tous les 5 km. Ambiance ultra festive, très cool ! Pas besoin de faire tout le parcours (10km ça marche aussi)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -564,7 +632,7 @@
                         <!-- Marathon du Vignoble d'Alsace -->
                         <tr class="event-row" onclick="toggleRow(this)">
                             <td data-label="Événement"><strong>Marathon du Vignoble d'Alsace</strong> <span class="chevron">▼</span></td>
-                            <td data-label="Période / Date"><span class="badge badge-date">Fin juin 2027</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">Mi juin 2027</span></td>
                             <td data-label="Localisation"><span class="badge badge-location">Molsheim (Alsace)</span></td>
                             <td data-label="Réservation">Déc. 2026 (inscription)<br>Mars 2027 (hébergement)</td>
                             <td data-label="Hébergement">5-6 places à Strasbourg</td>
@@ -572,21 +640,16 @@
                         </tr>
                         <tr class="details-row">
                             <td colspan="6" class="details-cell">
-                                <div class="banner-collage">
-                                    <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=400&q=80" alt="Vignoble 1">
-                                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80" alt="Vin">
-                                    <img src="https://images.unsplash.com/photo-1568283096533-0dd839c31ed3?auto=format&fit=crop&w=400&q=80" alt="Alsace">
-                                </div>
                                 <div class="details-content">
                                     <h3>Détails : Marathon d'Alsace</h3>
                                     <div class="details-grid">
                                         <div class="detail-card">
                                             <h4>Parcours</h4>
-                                            <p>Parcours au cœur des vignes alsaciennes avec dégustations de grands crus aux ravitaillements.</p>
+                                            <p>Parcours au cœur des vignes alsaciennes avec bouffe et dégustations de grands crus aux ravitaillements. 50 à 60 euros l'inscription</p>
                                         </div>
                                         <div class="detail-card">
-                                            <h4>Hébergement Strasbourg</h4>
-                                            <p>Pied-à-terre sur Strasbourg avec trajets en train/voiture vers Molsheim prévus.</p>
+                                            <h4>Ambiance</h4>
+                                            <p>Très festif et déguisé ! Découverte gastronomique et paysagère de l'alsace ! Jetzt geht's los !</p>
                                         </div>
                                     </div>
                                 </div>
@@ -596,29 +659,51 @@
                         <!-- Week-end Seigneur des Anneaux -->
                         <tr class="event-row" onclick="toggleRow(this)">
                             <td data-label="Événement"><strong>Week end Seigneur des anneaux</strong> <span class="chevron">▼</span></td>
-                            <td data-label="Période / Date"><span class="badge badge-date">Week end avril</span><br><small style="color:var(--text-muted)">(Ascension)</small></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">Week end Mars</span><br><small style="color:var(--text-muted)">(Ascension)</small></td>
                             <td data-label="Localisation"><span class="badge badge-location">Bretagne</span></td>
                             <td data-label="Réservation">Avril 2027</td>
-                            <td data-label="Hébergement">Geekery assumée</td>
-                            <td data-label="Info">-</td>
+                            <td data-label="Hébergement">Location d'un truc pas chère en Bretage</td>
+                            <td data-label="Info">date et lieu flexible, à voir selon les dispo de chacun</td>
                         </tr>
                         <tr class="details-row">
                             <td colspan="6" class="details-cell">
-                                <div class="banner-collage">
-                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" alt="Forêt">
-                                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" alt="Épée / Fantasy">
-                                    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80" alt="Nature">
-                                </div>
                                 <div class="details-content">
                                     <h3>Détails : Week-end Seigneur des Anneaux</h3>
                                     <div class="details-grid">
                                         <div class="detail-card">
                                             <h4>Concept</h4>
-                                            <p>Marathon des films version extended, jeux de société fantasy, et barbecue en forêt bretonne.</p>
+                                            <p>Marathon (encore !) des films version extended, Draft Magic seigneur des anneaux et autres geekeries</p>
                                         </div>
                                         <div class="detail-card">
-                                            <h4>Tenue recommandée</h4>
-                                            <p>Cape d’Elfe ou oreilles de Hobbit vivement conseillées.</p>
+                                            <h4>Ambiancee</h4>
+                                            <p>Geekery assumée, tenue decontractée et ripaille assurée</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Week-end camping Ascension -->
+                        <tr class="event-row" onclick="toggleRow(this)">
+                            <td data-label="Événement"><strong>Week end camping</strong> <span class="chevron">▼</span></td>
+                            <td data-label="Période / Date"><span class="badge badge-date">Week end de l'Ascension 2027 : Jeudi 6 Mai-Dimanche 9 Mai 2027</span></td>
+                            <td data-label="Localisation"><span class="badge badge-location">La mer</span></td>
+                            <td data-label="Réservation">Janvier 2027</td>
+                            <td data-label="Hébergement">Camping à définir en bretagne</td>
+                            <td data-label="Info">Pas lié au 40 ans, juste pour vous prévenir qu'on va viendre.</td>
+                        </tr>
+                        <tr class="details-row">
+                            <td colspan="6" class="details-cell">
+                                <div class="details-content">
+                                    <h3>Détails : Week-end camping</h3>
+                                    <div class="details-grid">
+                                        <div class="detail-card">
+                                            <h4>Programme</h4>
+                                            <p>Pas de programme.</p>
+                                        </div>
+                                        <div class="detail-card">
+                                            <h4>Ambiance</h4>
+                                            <p>La bonne ambiance.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -627,26 +712,24 @@
 
                         <!-- La semaine à Porto -->
                         <tr class="event-row" onclick="toggleRow(this)">
-                            <td data-label="Événement"><strong>La semaine à Porto</strong> <span class="chevron">▼</span></td>
+                            <td data-label="Événement"><strong>La semaine ou 2 à Porto</strong> <span class="chevron">▼</span></td>
                             <td data-label="Période / Date"><span class="badge badge-date">Début Août 2027</span></td>
                             <td data-label="Localisation"><span class="badge badge-location">Porto, Portugal</span></td>
                             <td data-label="Réservation">Janvier pour les vols</td>
-                            <td data-label="Hébergement">6 places dans la casota</td>
-                            <td data-label="Info"><a href="https://marathon-alsace.com/" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a></td>
+                            <td data-label="Hébergement">6 places dans la casota + tentes dans le jardin</td>
+                            <td data-label="Info"><a href="https://maps.app.goo.gl/7xTsuLLvDZrzm3888" target="_blank" class="link-btn" onclick="event.stopPropagation();">Site Web</a></td>
                         </tr>
                         <tr class="details-row">
                             <td colspan="6" class="details-cell">
-                                <div class="banner-collage">
-                                    <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=400&q=80" alt="Porto 1">
-                                    <img src="https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=400&q=80" alt="Porto 2">
-                                    <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=400&q=80" alt="Océan">
+                                <div class="banner-collage single-image">
+                                    <img src="porto_visuel_chatgpt.png" alt="Porto 1">
                                 </div>
                                 <div class="details-content">
                                     <h3>Détails : Semaine à Porto</h3>
                                     <div class="details-grid">
                                         <div class="detail-card">
                                             <h4>Programme</h4>
-                                            <p>Dégustations de Porto, surf sur la côte, francesinhas et chill à la casota.</p>
+                                            <p>Dégustations de Porto, vins du Douro, surf sur la côte, francesinhas, praia fluvial et do mar.</p>
                                         </div>
                                         <div class="detail-card">
                                             <h4>Vols</h4>
@@ -684,23 +767,27 @@
                     <div class="checkbox-group">
                         <label class="checkbox-item">
                             <input type="checkbox" name="events" value="Marathon de Paris">
-                            Marathon de Paris (11 avril)
+                            Marathon de Paris (4 avril 2027)
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" name="events" value="Marathon Bière Liège">
-                            Marathon Bière Liège (16 mai)
+                            <input type="checkbox" name="events" value="Marathon des amateurs de bière">
+                            Marathon des amateurs de bière (Dimanche 16 mai)
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" name="events" value="Marathon Alsace">
-                            Marathon d'Alsace (Fin juin)
+                            <input type="checkbox" name="events" value="Marathon du Vignoble d'Alsace">
+                            Marathon du Vignoble d'Alsace (Mi juin 2027)
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" name="events" value="Seigneur des anneaux">
-                            Week-end Seigneur des Anneaux (Avril)
+                            <input type="checkbox" name="events" value="Week end Seigneur des anneaux">
+                            Week end Seigneur des anneaux (week end Mars)
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" name="events" value="Porto">
-                            Semaine à Porto (Début Août)
+                            <input type="checkbox" name="events" value="Week end camping">
+                            Week end camping (week end de l'Ascension 2027 6 Mai)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="events" value="La semaine ou 2 à Porto">
+                            La semaine ou 2 à Porto (Début Août 2027)
                         </label>
                     </div>
                 </div>
@@ -717,11 +804,73 @@
 
                 <div class="form-group">
                     <label for="message">Un mot doux / Une question ?</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Dis-moi si tu cours, si tu viens juste pour l'apéro..."></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Dis-moi si tu cours un peu, beaucoup, ou t'es plus pour l'apéro "></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit">Confirmer ma présence / Réserver ma place</button>
             </form>
+        </div>
+
+        <div class="section-card calendar-section">
+            <h2 class="section-title">Calendrier 2027</h2>
+            <div class="calendar-grid">
+                <div class="month-card">
+                    <h3>Janvier</h3>
+                    <div class="month-events">
+                        <span class="event-pill blue">Réservations vols</span>
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Février</h3>
+                    <div class="month-events">
+                        <span class="event-pill blue">Réservations vols/hebergements</span>
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Mars</h3>
+                    <div class="month-events">
+                        <span class="event-pill orange">Week-end Seigneur des Anneaux</span>
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Avril</h3>
+                    <div class="month-events">
+                        <span class="event-pill pink">Marathon Paris – 04</span>
+                        
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Mai</h3>
+                    <div class="month-events">
+                        <span class="event-pill orange">Week-end Ascension – 6 </span>
+                        <span class="event-pill pink">Beer Lovers Marathon – 16</span>
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Juin</h3>
+                    <div class="month-events">
+                        <span class="event-pill pink">Marathon d'Alsace</span>
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Juillet</h3>
+                    <div class="month-events">
+                        <span class="event-pill blue"></span>
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Août</h3>
+                    <div class="month-events">
+                        <span class="event-pill purple">Semaines à Porto</span>
+                    </div>
+                </div>
+                <div class="month-card">
+                    <h3>Septembre</h3>
+                    <div class="month-events">
+                        <span class="event-pill blue"></span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <footer>
